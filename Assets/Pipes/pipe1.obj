@@ -1,4 +1,4 @@
-# Blender v2.79 (sub 0) OBJ File: 'pipe1.blend'
+# Blender v2.79 (sub 0) OBJ File: 'pipe1mesh.blend'
 # www.blender.org
 mtllib pipe1.mtl
 o BezierCircle
@@ -170,7 +170,7 @@ l 81 82
 l 82 83
 l 83 84
 l 84 1
-o BezierCurve
+o BezierCurve_CUBezierCurve
 v 8.351089 4.033240 -1.478739
 v 8.350694 4.078455 -1.475717
 v 8.351112 4.106069 -1.467634
