@@ -6,7 +6,7 @@ public class Follow : MonoBehaviour
 {
     [HideInInspector]
     public GameObject[] players;
-    float smoothing = .75f;
+    public float smoothing;
     Vector3 followPosition = new Vector3(-7f, 7f, 7f);
  
     // Start is called before the first frame update

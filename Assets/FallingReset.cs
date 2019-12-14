@@ -22,7 +22,7 @@ public class FallingReset : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(reversing)
+        if (reversing)
         {
             if (lastPositions.Count == 0) {
                 reversing = false;
