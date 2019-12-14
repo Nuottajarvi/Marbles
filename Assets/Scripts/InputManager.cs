@@ -132,12 +132,14 @@ public class InputManager : MonoBehaviour
     {
         //luodaan myös uusi UI elementti jokaiselle pelaajalle
         GameObject newPlayerUIElement = Instantiate(playerKeysUIElement);
-        Vector3 panelPosition = new Vector3(-600 + (player.playerNumber * 300 - 300),180,0);
-        newPlayerUIElement.GetComponent<PlayerInputInfo>().panelUI.anchoredPosition = panelPosition;
+        Vector3 panelPosition = new Vector3(-600 + (player.playerNumber * 300 - 300),300,0);
+        
         newPlayerUIElement.GetComponent<PlayerInputInfo>().playerNumberText.SetText("Player " + player.playerNumber);
         newPlayerUIElement.GetComponent<PlayerInputInfo>().assignedKeyText_1.SetText("Key 1: " + player.playerKey_1);
         newPlayerUIElement.GetComponent<PlayerInputInfo>().assignedKeyText_2.SetText("Key 2: " + player.playerKey_2);
         newPlayerUIElement.GetComponent<PlayerInputInfo>().panelUI.transform.SetParent(parentUIPanel.transform);
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().panelUI.anchoredPosition = panelPosition;
+        Destroy(newPlayerUIElement);
         UIPanelList.Add(newPlayerUIElement);
     }
     
