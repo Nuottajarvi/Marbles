@@ -13,10 +13,7 @@ public class InputManager : MonoBehaviour
     public List<Player> listOfPlayers;
     public int currentPlayerNumber;
     public int currentKeyNumber;
-    //public TMP_Text playerNumberText;
     public TMP_Text instructionsText;
-    //public TMP_Text assignedKeyText_1;
-    //public TMP_Text assignedKeyText_2;
     public List<KeyCode> givenKeyCodeList;
     public bool keyHasBeenAssigned;
     public GameObject playerKeysUIElement;
@@ -80,12 +77,6 @@ public class InputManager : MonoBehaviour
             Player newPlayer = new Player();
             listOfPlayers.Add(newPlayer);
             
-            //luodaan myös uusi UI elementti jokaiselle pelaajalle
-            GameObject newPlayerUIElement = Instantiate(playerKeysUIElement);
-            newPlayerUIElement.transform.SetParent(parentUIPanel.transform);
-            Vector3 panelPosition = new Vector3(-600 + (i * 300),180,0);
-            newPlayerUIElement.GetComponent<RectTransform>().anchoredPosition = panelPosition;
-            UIPanelList.Add(newPlayerUIElement);
         }
     }
     public bool AssignKeysToPlayers(Player player, KeyCode keyCode, int keyNumber)
@@ -100,15 +91,15 @@ public class InputManager : MonoBehaviour
                 givenKeyCodeList.Add(keyCode);
                 Debug.Log("assigned :" + keyCode + " to player " + currentPlayerNumber + " for key " + currentKeyNumber);
                 //assignedKeyText_1.SetText("The key you chose as your first key is " + givenKeyCode);
-                //UIPanelList[currentPlayerNumber - 1]
-
+                
             } else if (keyNumber == 2)
             {
                 givenKeyCodeList.Add(keyCode);
                 player.playerKey_2 = keyCode;
                 Debug.Log("assigned :" + keyCode + " to " + currentPlayerNumber + " for key " + currentKeyNumber);
                 //assignedKeyText_2.SetText("The key you chose as your second key is " + givenKeyCode);
-
+                player.playerNumber = currentPlayerNumber;
+                CreatePanelForPlayer(player);
             }
 
             return isKeyFree;
@@ -135,6 +126,19 @@ public class InputManager : MonoBehaviour
             }
         }
         return isKeyFree;
+    }
+
+    public void CreatePanelForPlayer(Player player)
+    {
+        //luodaan myös uusi UI elementti jokaiselle pelaajalle
+        GameObject newPlayerUIElement = Instantiate(playerKeysUIElement);
+        Vector3 panelPosition = new Vector3(-600 + (player.playerNumber * 300 - 300),180,0);
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().panelUI.anchoredPosition = panelPosition;
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().playerNumberText.SetText("Player " + player.playerNumber);
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().assignedKeyText_1.SetText("Key 1: " + player.playerKey_1);
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().assignedKeyText_2.SetText("Key 2: " + player.playerKey_2);
+        newPlayerUIElement.GetComponent<PlayerInputInfo>().panelUI.transform.SetParent(parentUIPanel.transform);
+        UIPanelList.Add(newPlayerUIElement);
     }
     
 }

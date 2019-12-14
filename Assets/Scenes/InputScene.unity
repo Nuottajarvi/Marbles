@@ -170,7 +170,7 @@ MonoBehaviour:
   instructionsText: {fileID: 1351497904}
   givenKeyCodeList: 
   keyHasBeenAssigned: 0
-  playerKeysUIElement: {fileID: 2665103272798347729, guid: 233c9e3fee78a47c987c7c3176eca1c8,
+  playerKeysUIElement: {fileID: 5171509465363438863, guid: ac921607034e74e58bd708a1585e25bc,
     type: 3}
   parentUIPanel: {fileID: 1868739422}
   UIPanelList: []
