@@ -6,4 +6,6 @@ public class Player
 {
     public KeyCode playerKey_1;
     public KeyCode playerKey_2;
+    
+    
 }
