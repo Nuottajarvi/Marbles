@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 using TMPro;
 
 public class InputManager : MonoBehaviour
 {
-
+    public GameInputManager gameInputManager;
     private bool settingKey;
     private KeyCode givenKeyCode;
     public int amountOfPlayers;
-    public List<Player> listOfPlayers;
     public int currentPlayerNumber;
     public int currentKeyNumber;
     public TMP_Text instructionsText;
@@ -20,9 +20,9 @@ public class InputManager : MonoBehaviour
     public GameObject parentUIPanel;
     public List<GameObject> UIPanelList;
     
+    
     void Start()
     {
-        listOfPlayers = new List<Player>();
         settingKey = true;
         PopulatePlayerList(amountOfPlayers);
         StartCoroutine(WaitForKeyPress());
@@ -38,6 +38,10 @@ public class InputManager : MonoBehaviour
                 if (keyPressEvent.isKey)
                 {
                     givenKeyCode = keyPressEvent.keyCode;
+                    if(givenKeyCode == KeyCode.Return)
+                    {
+                        SceneManager.LoadScene("Game", LoadSceneMode.Single);
+                    }
                     settingKey = false;
                 }
             }
@@ -57,7 +61,7 @@ public class InputManager : MonoBehaviour
                 currentKeyNumber = j + 1;
                 instructionsText.SetText("Press which key you want to use for key " + currentKeyNumber);
                 yield return new WaitUntil(() => settingKey == false);
-                bool isKeyFree = AssignKeysToPlayers(listOfPlayers[currentPlayerNumber - 1], givenKeyCode, currentKeyNumber);
+                bool isKeyFree = AssignKeysToPlayers(gameInputManager.listOfPlayers[currentPlayerNumber - 1], givenKeyCode, currentKeyNumber);
                 if (isKeyFree == false)
                 {
                     j = j-1;
@@ -75,7 +79,9 @@ public class InputManager : MonoBehaviour
         for (int i = 0; i < amountOfPlayers; i++)
         {
             Player newPlayer = new Player();
-            listOfPlayers.Add(newPlayer);
+            if(gameInputManager.listOfPlayers == null)
+                gameInputManager.listOfPlayers = new List<Player>();
+            gameInputManager.listOfPlayers.Add(newPlayer);
             
         }
     }
