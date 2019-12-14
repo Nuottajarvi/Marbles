@@ -12,6 +12,8 @@ public class CreatePlayers : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Follow follow = Camera.main.GetComponent<Follow>();
+        follow.players = new GameObject[4];
         for (int i = 0; i < playerCount; ++i)
         {
 
@@ -19,11 +21,18 @@ public class CreatePlayers : MonoBehaviour
             randomPosition.x = Random.Range(-0.3f, 0.3f);
             randomPosition.z = Random.Range(-0.3f, 0.3f);
 
-            GameObject.Instantiate(
+            GameObject newPlayer = GameObject.Instantiate(
                 player,
                 transform.position + new Vector3((i / 2) * .8f - .4f, 0f, (float)(i % 2) * .8f - .4f) + randomPosition,
                 Quaternion.identity
             );
+
+            Lamp lamp = newPlayer.GetComponent<Lamp>();
+            lamp.SetColor(colors[i]);
+
+            follow.players[i] = newPlayer;
+
+            newPlayer.GetComponentInChildren<Light>().color = colors[i];
         }
     }
 
