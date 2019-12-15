@@ -10,7 +10,7 @@ public class Accelerator : MonoBehaviour
         Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
         if(rb)
         {
-            rb.AddForce(transform.forward * force, ForceMode.Acceleration);
+            rb.AddForce(transform.forward * force * Random.Range(0.8f, 1.2f), ForceMode.Acceleration);
         }
     }
 }

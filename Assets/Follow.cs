@@ -8,6 +8,8 @@ public class Follow : MonoBehaviour
     public GameObject[] players;
     public float smoothing;
     Vector3 followPosition = new Vector3(-7f, 7f, 7f);
+
+    public GameObject forceFollow;
  
     // Start is called before the first frame update
     void Start()
@@ -27,6 +29,9 @@ public class Follow : MonoBehaviour
                 leadingPlayer = player;
             }
         }
+
+        if (forceFollow)
+            leadingPlayer = forceFollow;
 
         transform.position = Vector3.Lerp(
             transform.position,
