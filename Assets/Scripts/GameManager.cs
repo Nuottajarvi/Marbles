@@ -18,18 +18,5 @@ public class GameManager : MonoBehaviour
     {
         
     }
-    
-    //asetetaan pelaajan valitsema näppäin
-    public void AssignKeysToPlayers(Player player, KeyCode keyCode, int keyNumber)
-    {
-        //keyNumber 1 on playerKey_1, keyNumber 2 on playerKey_2
-        if (keyNumber == 1)
-        {
-            player.playerKey_1 = keyCode;            
-        } else if (keyNumber == 2)
-        {
-            player.playerKey_2 = keyCode;
-        }
 
-    }
 }

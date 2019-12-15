@@ -39,7 +39,7 @@ public class StuckReset : MonoBehaviour
 
         if (stuckTimer > 1f)
         {
-            rb.AddForce(new Vector3(100f, 100f, 0f));
+            rb.AddForce(new Vector3(30f, 30f, 0f));
             stuckTimerTwo = 0f;
             secondTimerOn = true;
         }
